@@ -6,7 +6,7 @@ const save = {
     {
       name: 'postedBy',
       title: 'PostedBy',
-      type: ' postedBy',
+      type: 'postedBy',
     },
     {
       name: 'userId',
