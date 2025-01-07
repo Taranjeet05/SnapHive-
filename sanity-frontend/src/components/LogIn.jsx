@@ -1,5 +1,8 @@
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logo.png";
+import { GoogleLogin } from "@react-oauth/google"; // Import GoogleLogin
+import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 const LogIn = () => {
   return (
@@ -20,6 +23,21 @@ const LogIn = () => {
           </div>
           <div className="shadow-2xl">
             {/* Add Google Login button here */}
+            <GoogleLogin
+              clientId="YOUR_CLIENT_ID" // Add your client ID here
+              render={(renderProps) => (
+                <button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
+                >
+                  <FcGoogle className="mr-4" /> Login with Google
+                </button>
+              )}
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
           </div>
         </div>
       </div>
