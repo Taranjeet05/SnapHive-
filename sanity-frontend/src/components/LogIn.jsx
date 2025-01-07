@@ -1,5 +1,5 @@
 import shareVideo from "../assets/share.mp4";
-import logo from "../assets/logowhite.png";
+import logo from "../assets/logo.png";
 
 const LogIn = () => {
   return (
@@ -16,7 +16,10 @@ const LogIn = () => {
 
         <div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">
           <div className="p-5">
-            <img src={logo} width="130px" alt="logo" />
+            <img src={logo} alt="logo" />
+          </div>
+          <div className="shadow-2xl">
+            {/* Add Google Login button here */}
           </div>
         </div>
       </div>
