@@ -7,14 +7,13 @@ import { FcGoogle } from "react-icons/fc";
 const LogIn = () => {
   const responseGoogle = (response) => {
     localStorage.setItem("user", JSON.stringify(response.profileObj));
-    const { name, email, imageUrl, googleId } = response.profileObj;
+    const { name, imageUrl, googleId } = response.profileObj;
 
     const doc = {
       _id: googleId,
-      _type: "user",
-      name,
-      email,
-      imageUrl,
+      _type: 'user',
+      userName: name,
+      image: imageUrl,
     };
   };
 
