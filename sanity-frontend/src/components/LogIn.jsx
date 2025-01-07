@@ -5,6 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 const LogIn = () => {
+  const responseGoogle = (response) => {
+    localStorage.setItem("user", JSON.stringify(response.profileObj));
+    const { name, email, imageUrl, googleId } = response.profileObj;
+
+    const doc = {
+      _id: googleId,
+      _type: "user",
+      name,
+      email,
+      imageUrl,
+    };
+  };
+
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <div className="relative w-full h-full">
@@ -24,7 +37,7 @@ const LogIn = () => {
           <div className="shadow-2xl">
             {/* Add Google Login button here */}
             <GoogleLogin
-              clientId="YOUR_CLIENT_ID" // Add your client ID here
+              clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
               render={(renderProps) => (
                 <button
                   onClick={renderProps.onClick}
