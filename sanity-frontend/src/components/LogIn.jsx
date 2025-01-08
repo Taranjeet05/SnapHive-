@@ -3,18 +3,24 @@ import logo from "../assets/logo.png";
 import { GoogleLogin } from "@react-oauth/google"; // Import GoogleLogin
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { client } from "../client";
 
 const LogIn = () => {
+  const navigate = useNavigate();
   const responseGoogle = (response) => {
     localStorage.setItem("user", JSON.stringify(response.profileObj));
     const { name, imageUrl, googleId } = response.profileObj;
 
     const doc = {
       _id: googleId,
-      _type: 'user',
+      _type: "user",
       userName: name,
       image: imageUrl,
     };
+
+    client.createIfNotExists(doc).then(() => {
+      navigate("/", { replace: true });
+    });
   };
 
   return (
