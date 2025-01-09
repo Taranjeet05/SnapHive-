@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { HiMenu } from "react-icons/hi";
-//import {AiFiLLCloseCircle} from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { Link, Route, Routes } from "react-router-dom";
 
 import { SideBar, UserProfile } from "../components";
@@ -24,26 +24,38 @@ const Home = () => {
     client.fetch(query).then((data) => {
       setData(data[0]);
     });
-  }, [userInfo?.googleId]);
+  }, []);
 
   return (
     <>
       <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
         <div className="hidden md:flex h-screen flex-initial">
-          <SideBar />
+          <SideBar user={user && user} />
         </div>
         <div className="flex md:hidden flex-row">
           <HiMenu
             fontSize={40}
             className="cursor-pointer"
-            onClick={() => setToggleSideBar()}
+            onClick={() => setToggleSideBar(true)}
           />
           <Link to="/">
             <img src={logo} alt="logo" className="w-28" />
           </Link>
           <Link to={`user-profile/${user?._id}`}>
-            <img src={logo} alt="logo" className="w-28" />
+            <img src={user?.image} alt="logo" className="w-28" />
           </Link>
+          {toggleSideBar && (
+            <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 aniamate-slide-in">
+              <div className="absolute w-full flex justify-end">
+                <AiFillCloseCircle
+                  fontSize={30}
+                  className="cursor-pointer"
+                  onClick={() => setToggleSideBar(false)}
+                />
+              </div>
+              <SideBar user={user && user} closeToggle={setToggleSideBar} />
+            </div>
+          )}
         </div>
       </div>
     </>
