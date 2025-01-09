@@ -20,7 +20,6 @@ const Home = () => {
       ? JSON.parse(localStorage.getItem("user"))
       : localStorage.clear();
 
-
   useEffect(() => {
     const query = userQuery(userInfo?.googleId);
 
@@ -31,8 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0);
-  }, [])
-  
+  }, []);
 
   return (
     <>
@@ -41,31 +39,37 @@ const Home = () => {
           <SideBar user={user && user} />
         </div>
         <div className="flex md:hidden flex-row">
-          <HiMenu
-            fontSize={40}
-            className="cursor-pointer"
-            onClick={() => setToggleSideBar(true)}
-          />
-          <Link to="/">
-            <img src={logo} alt="logo" className="w-28" />
-          </Link>
-          <Link to={`user-profile/${user?._id}`}>
-            <img src={user?.image} alt="logo" className="w-28" />
-          </Link>
+          <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
+            <HiMenu
+              fontSize={40}
+              className="cursor-pointer"
+              onClick={() => setToggleSideBar(true)}
+            />
+            <Link to="/">
+              <img src={logo} alt="logo" className="w-28" />
+            </Link>
+            <Link to={`user-profile/${user?._id}`}>
+              <img
+                src={user?.image}
+                alt="user-pic"
+                className="w-9 h-9 rounded-full "
+              />
+            </Link>
+          </div>
           {toggleSideBar && (
-            <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 aniamate-slide-in">
-              <div className="absolute w-full flex justify-end">
+            <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
+              <div className="absolute w-full flex justify-end items-center p-2">
                 <AiFillCloseCircle
                   fontSize={30}
                   className="cursor-pointer"
                   onClick={() => setToggleSideBar(false)}
                 />
               </div>
-              <SideBar user={user && user} closeToggle={setToggleSideBar} />
+              <SideBar closeToggle={setToggleSideBar} user={user && user} />
             </div>
           )}
         </div>
-        <div className="pb-2 flex-1 h-screen overflow-y-scroll ref={scrollRef}">
+        <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
           <Routes>
             <Route path="/user-profile/:userId" element={<UserProfile />} />
             <Route path="/*" element={<Pins user={user && user} />} />
