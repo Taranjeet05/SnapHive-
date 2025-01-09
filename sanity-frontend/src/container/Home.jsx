@@ -13,10 +13,13 @@ import user from "../../../sanity-backend/schemaTypes/user";
 const Home = () => {
   const [toggleSideBar, setToggleSideBar] = useState(false);
   const [data, setData] = useState(null);
+  const scrollRef = useRef(null);
+
   const userInfo =
     localStorage.getItem("user") !== "undefined"
       ? JSON.parse(localStorage.getItem("user"))
       : localStorage.clear();
+
 
   useEffect(() => {
     const query = userQuery(userInfo?.googleId);
@@ -25,6 +28,11 @@ const Home = () => {
       setData(data[0]);
     });
   }, []);
+
+  useEffect(() => {
+    scrollRef.current.scrollTo(0, 0);
+  }, [])
+  
 
   return (
     <>
@@ -56,6 +64,12 @@ const Home = () => {
               <SideBar user={user && user} closeToggle={setToggleSideBar} />
             </div>
           )}
+        </div>
+        <div className="pb-2 flex-1 h-screen overflow-y-scroll ref={scrollRef}">
+          <Routes>
+            <Route path="/user-profile/:userId" element={<UserProfile />} />
+            <Route path="/*" element={<Pins user={user && user} />} />
+          </Routes>
         </div>
       </div>
     </>
