@@ -8,29 +8,25 @@ import Pins from "./Pins";
 import { userQuery } from "../utils/data";
 import { client } from "../client";
 import logo from "../assets/logo.png";
-import user from "../../../sanity-backend/schemaTypes/user";
 
 const Home = () => {
   const [toggleSideBar, setToggleSideBar] = useState(false);
-  const [data, setData] = useState(null);
+  const [user, setUser] = useState();
   const scrollRef = useRef(null);
 
-  const userInfo =
-    localStorage.getItem("user") !== "undefined"
-      ? JSON.parse(localStorage.getItem("user"))
-      : localStorage.clear();
+  const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
 
   useEffect(() => {
     const query = userQuery(userInfo?.googleId);
 
     client.fetch(query).then((data) => {
-      setData(data[0]);
+      setUser(data[0]);
     });
   }, []);
 
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0);
-  }, []);
+  });
 
   return (
     <>
