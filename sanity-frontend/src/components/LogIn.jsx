@@ -4,7 +4,7 @@ import { GoogleLogin } from "@react-oauth/google"; // Import GoogleLogin
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { jwtDecode } from "jwt-decode";
-import  client  from "../client";
+import  { client } from "../client";
 
 const LogIn = () => {
   const navigate = useNavigate();

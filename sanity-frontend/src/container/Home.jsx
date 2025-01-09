@@ -8,7 +8,6 @@ import Pins from "./Pins";
 import { userQuery } from "../utils/data";
 import { client } from "../client";
 import logo from "../assets/logo.png";
-import client from "../client";
 import user from "../../../sanity-backend/schemaTypes/user";
 
 const Home = () => {
@@ -23,9 +22,9 @@ const Home = () => {
     const query = userQuery(userInfo?.googleId);
 
     client.fetch(query).then((data) => {
-      setData(data[0]); 
+      setData(data[0]);
     });
-  }, [userInfo?.googleId]); 
+  }, [userInfo?.googleId]);
 
   return (
     <>
