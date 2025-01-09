@@ -5,11 +5,27 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import { SideBar, UserProfile } from "../components";
 import Pins from "./Pins";
-//import {client} from "../client";
+import { userQuery } from "../utils/data";
+import { client } from "../client";
 import logo from "../assets/logo.png";
+import client from "../client";
+import user from "../../../sanity-backend/schemaTypes/user";
 
 const Home = () => {
   const [toggleSideBar, setToggleSideBar] = useState(false);
+  const [data, setData] = useState(null);
+  const userInfo =
+    localStorage.getItem("user") !== "undefined"
+      ? JSON.parse(localStorage.getItem("user"))
+      : localStorage.clear();
+
+  useEffect(() => {
+    const query = userQuery(userInfo?.googleId);
+
+    client.fetch(query).then((data) => {
+      setData(data[0]); 
+    });
+  }, [userInfo?.googleId]); 
 
   return (
     <>
@@ -24,6 +40,9 @@ const Home = () => {
             onClick={() => setToggleSideBar()}
           />
           <Link to="/">
+            <img src={logo} alt="logo" className="w-28" />
+          </Link>
+          <Link to={`user-profile/${user?._id}`}>
             <img src={logo} alt="logo" className="w-28" />
           </Link>
         </div>
