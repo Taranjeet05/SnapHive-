@@ -1,6 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { RiHomeFill } from "react-icons/ri";
-//import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import logo from "../assets/logo.png";
 import PropTypes from "prop-types";
 
@@ -74,21 +74,27 @@ const SideBar = ({ closeToggle, user }) => {
         </div>
       </div>
       {user && (
-        <link
-          to={`/user-profile/${user._id}`}
-          className="flex my-5 mb-3 gap-2"
-        ></link>
+        <link to={`/user-profile/${user._id}`} className="">
+          <img
+            src={user.image}
+            alt="user-pic"
+            className="w-10 h-10 rounded-full"
+          />
+          <p>{user.userName}</p>
+          <IoIosArrowForward />
+        </link>
       )}
     </div>
   );
 };
 
 SideBar.propTypes = {
-  closeToggle: PropTypes.func, 
+  closeToggle: PropTypes.func,
   user: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-  }), 
+    userName: PropTypes.string.isRequired,
+  }),
 };
 
 export default SideBar;
