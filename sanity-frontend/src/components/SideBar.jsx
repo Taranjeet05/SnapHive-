@@ -72,6 +72,10 @@ const SideBar = ({ closeToggle, user }) => {
           ))}
         </div>
       </div>
+      {user && (
+        <link to={`/user-profile/${user._id}`} className="flex items-center px-5 gap-3 my-6">
+        </link>
+      )}
     </div>
   );
 };
