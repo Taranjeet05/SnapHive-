@@ -10,6 +10,21 @@ const SideBar = ({ closeToggle, user }) => {
   const isActiveStyle =
     "flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize";
 
+  const categories = [
+    { name: "Animals" },
+    { name: "Architecture" },
+    { name: "Art" },
+    { name: "Cars & Motorcycles" },
+    { name: "Celebrities" },
+    { name: "Design" },
+    { name: "DIY & Crafts" },
+    { name: "Education" },
+    { name: "Film, Music & Books" },
+    { name: "Food & Drink" },
+    { name: "Gardening" },
+    { name: "Geek" },
+  ];
+
   const handleCloseSidebar = () => {
     if (closeToggle) {
       closeToggle(false);
@@ -36,7 +51,25 @@ const SideBar = ({ closeToggle, user }) => {
             <RiHomeFill />
             <span>Home</span>
           </NavLink>
-          <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover cateogries</h3>
+          <h3 className="mt-2 px-5 text-base 2xl:text-xl">
+            Discover cateogries
+          </h3>
+          {categories.slice(0, categories.length - 1).map((category) => (
+            <NavLink
+              to={`/category/${category.name}`}
+              className={({ isActive }) =>
+                isActive ? isActiveStyle : isNotActiveStyle
+              }
+              onClick={handleCloseSidebar}
+              key={category.name}
+            >
+              <img
+                src={category.image}
+                className="w-8 h-8 rounded-full shadow-sm"
+              />
+              {category.name}
+            </NavLink>
+          ))}
         </div>
       </div>
     </div>
