@@ -2,7 +2,6 @@ import { NavLink, Link } from "react-router-dom";
 import { RiHomeFill } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import logo from "../assets/logo.png";
-import PropTypes from "prop-types";
 
 const SideBar = ({ closeToggle, user }) => {
   const isNotActiveStyle =
@@ -24,7 +23,7 @@ const SideBar = ({ closeToggle, user }) => {
     { name: "Food & Drink" },
     { name: "Gardening" },
     { name: "Geek" },
-    {name: "Others"},
+    { name: "Others" },
   ];
 
   const handleCloseSidebar = () => {
@@ -91,15 +90,6 @@ const SideBar = ({ closeToggle, user }) => {
       )}
     </div>
   );
-};
-
-SideBar.propTypes = {
-  closeToggle: PropTypes.func,
-  user: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    userName: PropTypes.string.isRequired,
-  }),
 };
 
 export default SideBar;

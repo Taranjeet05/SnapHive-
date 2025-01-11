@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { NavBar, Feed, PinDetails, CreatePin, Search } from "../components";
-import PropTypes from "prop-types";
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,14 +35,6 @@ const Pins = ({ user }) => {
       </div>
     </div>
   );
-};
-
-Pins.propTypes = {
-  user: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    userName: PropTypes.string, // optional
-  }),
 };
 
 export default Pins;
