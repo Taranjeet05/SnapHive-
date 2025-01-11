@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar, Feed, PinDetail, CreatePin, Search } from "../components";
+import { NavBar, Feed, PinDetails, CreatePin, Search } from "../components";
 import PropTypes from "prop-types";
 
 const Pins = ({ user }) => {
@@ -8,7 +8,11 @@ const Pins = ({ user }) => {
   return (
     <div className="px-2 md:px-5">
       <div className="bg-gray-50">
-        <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <NavBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          user={user && user}
+        />
       </div>
       <div className="h-full">
         <Routes>
@@ -16,7 +20,7 @@ const Pins = ({ user }) => {
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route
             path="/pin-detail/:pinId"
-            element={<PinDetail user={user && user} />}
+            element={<PinDetails user={user && user} />}
           />
           <Route
             path="/create-pin"
@@ -41,6 +45,5 @@ Pins.propTypes = {
     userName: PropTypes.string, // optional
   }),
 };
-
 
 export default Pins;
