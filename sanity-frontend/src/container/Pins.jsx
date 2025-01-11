@@ -1,8 +1,12 @@
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+
+
 
 const Pins = () => {
-  return (
-    <div>Pins</div>
-  )
-}
+  return(
+   <div className=""></div>
+  );
+};
 
-export default Pins
+export default Pins;
