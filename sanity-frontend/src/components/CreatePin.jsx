@@ -19,10 +19,12 @@ const CreatePin = ({user}) => {
   const [wrongImageType, setWrongImageType] = useState(false);
 
   const navigate = useNavigate();
-  
+
   return (
-    <div>CreatePin</div>
+    <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
+      CreatePin
+    </div>
   )
 }
 
-export default CreatePin
+export default CreatePin 
