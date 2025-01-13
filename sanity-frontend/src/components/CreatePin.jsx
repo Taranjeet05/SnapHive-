@@ -161,7 +161,7 @@ const CreatePin = ({ user }) => {
           />
           <input
             type="url"
-            value={destination}                         
+            value={destination}
             onChange={(e) => setDestination(e.target.value)}
             placeholder="Add a destination link"
             className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
@@ -185,7 +185,7 @@ const CreatePin = ({ user }) => {
                   <option
                     className="text-base border-0 outline-none capitalize bg-white text-black "
                     value={item.name}
-                    key={item.name}
+                    key={item.id}
                   >
                     {item.name}
                   </option>

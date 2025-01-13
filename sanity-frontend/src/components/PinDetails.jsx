@@ -8,7 +8,7 @@ import MasonryLayout from "./MasonryLayout";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import Spinner from "./Spinner";
 
-const PinDetails = ({ user }) => {
+const PinDetail = ({ user }) => {
   const { pinId } = useParams();
   const [pins, setPins] = useState();
   const [pinDetail, setPinDetail] = useState();
@@ -168,4 +168,4 @@ const PinDetails = ({ user }) => {
   );
 };
 
-export default PinDetails;
+export default PinDetail;
