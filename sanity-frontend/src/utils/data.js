@@ -129,14 +129,14 @@ export const pinDetailQuery = (pinId) => {
       userName,
       image
     },
-    save[] {
+   save[]{
       postedBy->{
         _id,
         userName,
         image
       },
     },
-    comments[] {
+    comments[]{
       comment,
       _key,
       postedBy->{
@@ -164,7 +164,7 @@ export const pinDetailMorePinQuery = (pin) => {
       userName,
       image
     },
-    save[] {
+    save[]{
       _key,
       postedBy->{
         _id,
